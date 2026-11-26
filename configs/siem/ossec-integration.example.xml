@@ -1,0 +1,13 @@
+<!-- Blok ini ditambahkan di /var/ossec/etc/ossec.conf sebelum </ossec_config> -->
+
+<localfile>
+  <log_format>json</log_format>
+  <location>/var/log/suricata/eve.json</location>
+</localfile>
+
+<integration>
+  <name>custom-telegram</name>
+  <hook_url>https://api.telegram.org/bot<TELEGRAM_BOT_TOKEN>/sendMessage</hook_url>
+  <level>7</level>
+  <alert_format>json</alert_format>
+</integration>
