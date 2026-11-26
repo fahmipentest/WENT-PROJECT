@@ -1,0 +1,26 @@
+networks:
+  went-web-net:
+    name: went-web-net
+
+services:
+  juice-shop:
+    image: bkimminich/juice-shop
+    container_name: juice-shop
+    restart: unless-stopped
+    networks: [went-web-net]
+
+  waf-modsec:
+    image: owasp/modsecurity-crs:nginx
+    container_name: waf-modsec
+    restart: unless-stopped
+    depends_on: [juice-shop]
+    environment:
+      PROXY: "1"
+      BACKEND: "http://juice-shop:3000"
+    ports:
+      - "10.10.10.40:80:8080"
+      - "10.10.56.40:80:8080"
+    volumes:
+      - ~/went-juiceshop/logs/nginx:/var/log/nginx
+      - ~/went-juiceshop/logs/modsecurity:/var/log/modsecurity
+    networks: [went-web-net]
