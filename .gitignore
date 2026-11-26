@@ -1,0 +1,9 @@
+# Jangan pernah commit file berikut
+*.tar
+wazuh-install-files.tar
+*.env
+secrets/
+*_token*
+*.key
+logs/
+*.log
