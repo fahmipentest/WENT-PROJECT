@@ -1,0 +1,1 @@
+alert tcp any any -> $HOME_NET any (msg:"WENT SCAN Possible TCP SYN Port Scan"; flags:S; threshold: type both, track by_src, count 15, seconds 10; classtype:attempted-recon; sid:9000001; rev:1;)
