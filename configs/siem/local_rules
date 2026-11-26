@@ -1,0 +1,10 @@
+<group name="local,went,threat_intel,">
+  <rule id="110100" level="10">
+    <if_sid>86601</if_sid>
+    <list field="src_ip" lookup="address_match_key">etc/lists/went-malicious-ip</list>
+    <description>WENT TI: Suricata alert dari IP malicious ($(src_ip))</description>
+    <mitre>
+      <id>T1595</id>
+    </mitre>
+  </rule>
+</group>
